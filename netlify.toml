@@ -1,0 +1,38 @@
+# Site da DECÔ Arquitetura & Interiores — estático, sem build.
+# Os arquivos ficam na raiz do repositório pra funcionar igual no Netlify e
+# no GitHub Pages, sem duplicar nada.
+
+[build]
+  publish = "."
+  command = ""
+
+# Config e documentação não são conteúdo do site.
+[[redirects]]
+  from = "/*.md"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/index.html"
+  status = 404
+
+# As imagens têm nome fixo e conteúdo estável — cache longo é seguro.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# O HTML revalida sempre: nessa fase o texto ainda muda, e correção precisa
+# aparecer na hora pra quem já visitou.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DECÔ — Arquitetura &amp; Interiores | Ribeirão Preto/SP</title>
+<meta name="description" content="Escritório de arquitetura e interiores em Ribeirão Preto/SP. Projeto, interiores e acompanhamento de obra — do estudo à entrega do espaço.">
+<meta property="og:title" content="DECÔ — Arquitetura & Interiores">
+<meta property="og:description" content="Architecture • Interiors • Design. Ribeirão Preto/SP.">
+<meta property="og:type" content="website">
+<!-- og:image precisa de URL absoluta pra rede social conseguir ler. O domínio
+     veio do e-mail do escritório e ainda é [CONFIRMAR] — ver PENDENTE.md.
+     A `capa.jpg` que estava aqui não existe desde que a faixa estática virou
+     a vitrine: todo link compartilhado estava saindo sem imagem. -->
+<meta property="og:image" content="https://deco-arquitetura.com.br/assets/alta/proj-05.jpg">
+<meta property="og:image:width" content="1440">
+<meta property="og:image:height" content="810">
+<meta property="og:image:alt" content="Fachada em tijolo branco com esquadria verde, projeto da DECÔ">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="DECÔ — Arquitetura &amp; Interiores">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2C2C2C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 112 112'%3E%3Cpath d='M4 68V28A24 24 0 0 1 28 4h40v64z' fill='none' stroke='%232C2C2C' stroke-width='6'/%3E%3Crect x='44' y='44' width='64' height='64' fill='none' stroke='%232C2C2C' stroke-width='6'/%3E%3C/svg%3E">
+
+<!--
+  ============================================================
+  DECÔ Arquitetura & Interiores — site de apresentação
+  Feito pela Hella · v1 em 10/08/2026
+  Identidade: clientes/Deco-Arquitetura/identidade.md
+  Briefing:   clientes/Deco-Arquitetura/briefing.md
+  Imagens esperadas: ./assets/  (ver ./assets/README.md)
+  Pendências de conteúdo: ./PENDENTE.md
+
+  Tudo marcado [CONFIRMAR] é suposição da Hella, não informação dos sócios.
+  O site fica de pé SEM NENHUMA FOTO — todo slot cai num placeholder
+  desenhado. Salvar o arquivo em assets/ com o nome certo já basta.
+
+  ⚠️ NENHUMA imagem de IA nesse site. Escritório de arquitetura não pode
+  apresentar render que não é dele. Placeholder até a foto real chegar.
+
+  NÃO PUBLICAR antes de: número do CAU, WhatsApp real e autorização de
+  uso das fotos (sócios + donos dos imóveis).
+
+  A interação pedida pelo cliente ("uma linha onde vai surgindo as coisas
+  do site") é o eixo em SVG do lado esquerdo: ele se desenha conforme a
+  rolagem, faz curva em quarto de círculo (citação do canto do logo) e
+  marca um nó em cada seção — o conteúdo aparece quando a linha chega nele.
+  Código no fim do arquivo, bloco "EIXO".
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Jost = substituta próxima do wordmark (geométrica, O e C circulares).
+     Se não carregar (offline numa reunião), cai em Century Gothic e depois na
+     pilha do sistema. O site não depende disso pra ficar de pé. -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Paleta oficial da DECÔ — hex vindos da própria peça de marca do cliente. */
+    --off:#EAEAEA;        /* fundo principal */
+    --claro:#ACABA9;      /* linhas, bordas, apoio */
+    --medio:#767070;      /* texto secundário */
+    --grafite:#2C2C2C;    /* texto principal, seções escuras */
+    /* derivados da mesma escala — não são cor nova */
+    --card:#F4F4F4;
+    --grafite-2:#3A3A3A;
+    --rodape:#1F1F1F;
+
+    --rail:88px;          /* largura da calha do eixo */
+    --max:1180px;
+    --fonte:"Jost","Century Gothic",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--off);
+    color:var(--grafite);
+    font-family:var(--fonte);
+    font-size:17px;
+    font-weight:300;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* ---------- tipografia ----------
+     Alto padrão em arquitetura se comunica por peso leve e respiro.
+     Nunca passar de 400. */
+  h1,h2,h3{margin:0; font-weight:200; line-height:1.1; letter-spacing:-.02em}
+  h1{font-size:clamp(2.6rem,7vw,5.4rem)}
+  h2{font-size:clamp(1.9rem,4.2vw,3.1rem)}
+  h3{font-size:1.15rem; font-weight:300; letter-spacing:.01em; line-height:1.35}
+  p{margin:0 0 1.1em}
+  a{color:inherit}
+
+  .meta{
+    font-size:.69rem; font-weight:400; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--medio); line-height:1.6;
+  }
+  .lead{font-size:clamp(1.05rem,1.7vw,1.3rem); font-weight:300; line-height:1.7; color:var(--grafite)}
+  .apoio{color:var(--medio)}
+
+  /* ---------- estrutura ---------- */
+  section{position:relative; z-index:1}
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding-left:calc(var(--rail) + 8px);
+    padding-right:28px;
+  }
+  .bloco{padding:clamp(84px,13vh,150px) 0}
+  .escuro{background:var(--grafite); color:var(--off)}
+  .escuro .meta{color:var(--claro)}
+  .escuro .apoio{color:var(--claro)}
+  .escuro .lead{color:var(--off)}
+
+  /* cabeçalho de seção — numeração de prancha */
+  .cab{display:flex; align-items:baseline; gap:22px; margin-bottom:44px}
+  .cab .num{flex:none}
+  .cab h2{max-width:20ch}
+
+  .regra{height:1px; background:var(--claro); opacity:.55; border:0; margin:0}
+  .escuro .regra{background:var(--medio); opacity:.6}
+
+  /* ---------- eixo (a linha que se desenha) ---------- */
+  #eixo{
+    position:absolute; top:0; left:0;
+    width:var(--rail);
+    z-index:5;
+    pointer-events:none;
+    overflow:visible;
+  }
+  #eixo path,#eixo circle,#eixo line{
+    fill:none;
+    stroke:var(--claro);          /* fallback sem blend */
+    stroke-width:1;
+    vector-effect:non-scaling-stroke;
+  }
+  #eixo .no-ponto{fill:var(--claro); stroke:none}
+
+  /* Com mix-blend-mode a linha se inverte sozinha: fica escura sobre o
+     fundo claro e clara sobre o grafite, com um traço só. */
+  @supports (mix-blend-mode:difference){
+    #eixo{mix-blend-mode:difference; opacity:.55}
+    #eixo path,#eixo circle,#eixo line{stroke:#fff}
+    #eixo .no-ponto{fill:#fff}
+  }
+
+  #eixoTraco{stroke-linecap:butt}
+  .no{opacity:0; transition:opacity .5s ease}
+  .no.on{opacity:1}
+  .no .anel{transform-box:fill-box; transform-origin:center; transform:scale(.3); transition:transform .55s cubic-bezier(.16,1,.3,1)}
+  .no.on .anel{transform:scale(1)}
+
+  /* ---------- topo ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:20;
+    transition:background .35s ease,border-color .35s ease,padding .35s ease;
+    border-bottom:1px solid transparent;
+    padding:22px 0;
+  }
+  header.fixo{background:rgba(234,234,234,.92); backdrop-filter:blur(10px); border-bottom-color:var(--claro); padding:13px 0}
+  /* Sobre seção escura o topo inverte — barra clara cortando o grafite fica malresolvida. */
+  header.fixo.sobre-escuro{background:rgba(44,44,44,.92); border-bottom-color:var(--medio)}
+  header.fixo.sobre-escuro .marca{color:var(--off)}
+  header.fixo.sobre-escuro nav a{color:var(--claro)}
+  header.fixo.sobre-escuro nav a:hover{color:var(--off); border-bottom-color:var(--off)}
+  .topo{
+    max-width:var(--max); margin:0 auto; padding:0 28px 0 calc(var(--rail) + 8px);
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .marca{display:flex; align-items:center; gap:13px; text-decoration:none}
+  .marca svg{width:26px; height:26px; flex:none}
+  .marca .nome{font-size:1.02rem; font-weight:300; letter-spacing:.3em; line-height:1}
+  nav{display:flex; gap:30px}
+  nav a{
+    text-decoration:none; font-size:.7rem; font-weight:400;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--medio);
+    padding-bottom:3px; border-bottom:1px solid transparent; transition:color .25s,border-color .25s;
+  }
+  nav a:hover{color:var(--grafite); border-bottom-color:var(--grafite)}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100svh; display:flex; align-items:center; padding:130px 0 70px}
+  .hero .wrap{width:100%}
+  .simbolo{width:clamp(74px,9vw,104px); height:auto; display:block; margin-bottom:44px}
+  .simbolo path,.simbolo rect{
+    fill:none; stroke:var(--grafite); stroke-width:5;
+    stroke-dasharray:var(--len); stroke-dashoffset:var(--len);
+    animation:desenha 1.5s cubic-bezier(.5,0,.15,1) .25s forwards;
+  }
+  .simbolo rect{animation-delay:.62s}
+  @keyframes desenha{to{stroke-dashoffset:0}}
+
+  .hero h1{margin-bottom:30px}
+  .hero h1 em{font-style:normal; display:block; color:var(--medio)}
+  .hero .lead{max-width:44ch; margin-bottom:44px}
+  .hero .local{display:flex; flex-wrap:wrap; gap:12px 26px; margin-bottom:52px}
+
+  /* ---------- botões ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:14px;
+    padding:16px 30px; text-decoration:none;
+    font-size:.72rem; font-weight:400; letter-spacing:.2em; text-transform:uppercase;
+    border:1px solid var(--grafite); background:transparent; color:var(--grafite);
+    transition:background .3s ease,color .3s ease;
+  }
+  .btn:hover{background:var(--grafite); color:var(--off)}
+  .btn .seta{transition:transform .3s ease}
+  .btn:hover .seta{transform:translateX(5px)}
+  .escuro .btn{border-color:var(--off); color:var(--off)}
+  .escuro .btn:hover{background:var(--off); color:var(--grafite)}
+
+  /* ---------- slots de imagem ----------
+     Todo slot funciona vazio. Sem o arquivo, aparece o placeholder desenhado. */
+  .slot{position:relative; overflow:hidden; background:var(--card)}
+  .escuro .slot{background:var(--grafite-2)}
+  .slot::before{
+    content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(90deg,transparent 0 43px,rgba(118,112,112,.16) 43px 44px),
+      repeating-linear-gradient(0deg,transparent 0 43px,rgba(118,112,112,.16) 43px 44px);
+  }
+  .slot .aviso{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:12px; text-align:center; padding:24px;
+  }
+  .slot .aviso svg{width:38px; height:38px; opacity:.4}
+  .slot .aviso svg path,.slot .aviso svg rect{fill:none; stroke:var(--medio); stroke-width:5}
+  .slot img{
+    position:relative; z-index:2; width:100%; height:100%;
+    object-fit:cover; display:block;
+  }
+  .slot img[data-falhou]{display:none}
+  /* Foto em 9:16 dentro de slot 4:5: o corte centralizado comeria a cabeça.
+     Subir o enquadramento deixa ar acima e corta na altura da canela. */
+  .slot img.alto{object-position:center 30%}
+  /* A luminária do Quarto Pietro é 9:16 com o topo da cúpula a 8% da altura:
+     no corte centralizado ela perde a cúpula. Ancorar no alto resolve. */
+  .slot img.topo{object-position:center top}
+
+  /* ---------- galeria de projeto ----------
+     O Quarto Pietro tem várias fotos do mesmo ambiente em vez de uma só.
+     Elas se trocam sozinhas, em fade lento, dentro do mesmo slot das outras —
+     mesmo enquadramento, sem seta, sem bolinha, sem nada de carrossel.
+     É o movimento que o vídeo daria, no tom do resto do site. */
+  .galeria img{
+    position:absolute; inset:0;
+    width:100%; height:100%; object-fit:cover;
+    opacity:0; transition:opacity 1.8s ease;
+  }
+  .galeria img.visivel{opacity:1}
+
+  /* A cortina desce e descobre a imagem, na mesma direção do eixo que desenha
+     a página, com o mesmo traço de 1px na borda que se move. */
+  .cortina{
+    position:absolute; inset:0; z-index:3;
+    background:var(--card);
+    border-top:1px solid var(--medio);
+    transform:translateY(0);
+    transition:transform 1.2s cubic-bezier(.16,1,.3,1) .15s;
+  }
+  .escuro .cortina{background:var(--grafite-2)}
+  .slot.in .cortina{transform:translateY(100%)}
+  .r43{aspect-ratio:4/3}
+  .r11{aspect-ratio:1/1}
+  .r169{aspect-ratio:16/9}
+  .r34{aspect-ratio:3/4}
+  /* 4:5 é o formato nativo do que a DECÔ fotografa pro Instagram — usar aqui
+     reduz o corte na foto dos sócios. */
+  .r45{aspect-ratio:4/5}
+
+  /* ---------- vitrine ----------
+     Faixa de tela cheia logo abaixo do hero: o portfólio inteiro passando em
+     marquee contínuo, três faixas na diagonal, em velocidades e direções
+     diferentes. Referência de movimento veio de um componente React; aqui é
+     CSS puro e o acabamento é o da DECÔ: canto reto, sem sombra e — o mais
+     importante — SEM escurecer a foto. Overlay em foto de projeto é
+     exatamente o que o manual da marca proíbe.
+     O ângulo é uma variável só: subir pra -25deg deixa igual à referência. */
+  .vitrine{
+    --angulo:-14deg;
+    --cartao:340px;
+    --vao:22px;
+    position:relative; overflow:hidden; isolation:isolate;
+    height:clamp(430px,70vh,720px);
+    background:var(--off);
+    /* acima do eixo (z-index 5): a faixa é full-bleed e o traço cruzaria as
+       fotos, invertendo em cima delas. Assim a linha passa por trás da
+       vitrine e reaparece embaixo — como eixo que corre sob a prancha. */
+    z-index:6;
+  }
+  .faixas{
+    position:absolute; top:50%; left:50%;
+    width:160vw;
+    display:flex; flex-direction:column; gap:var(--vao);
+    transform:translate(-50%,-50%) rotate(var(--angulo));
+  }
+  .faixa{display:flex; overflow:hidden}
+  .fita{display:flex; flex:none; will-change:transform}
+  /* Só anda depois que o JS clonou cartão suficiente pra cobrir a faixa duas
+     vezes. Sem isso a fita anda e deixa buraco na volta. Sem JS, ficam as
+     quatro fotos paradas — a seção não quebra. */
+  .fita[data-pronto]{animation:correr var(--dur,90s) linear infinite}
+  .fita.re[data-pronto]{animation-name:correr-re}
+  /* O vão é padding do cartão, não `gap`: com gap o -50% não fecha o ciclo
+     exato e a emenda dá um salto visível a cada volta. */
+  .cartao{flex:none; padding-right:var(--vao)}
+  .cartao img{
+    display:block; width:var(--cartao); height:calc(var(--cartao) * .68);
+    object-fit:cover; background:var(--card);
+  }
+  @keyframes correr{
+    from{transform:translate3d(0,0,0)}
+    to{transform:translate3d(-50%,0,0)}
+  }
+  @keyframes correr-re{
+    from{transform:translate3d(-50%,0,0)}
+    to{transform:translate3d(0,0,0)}
+  }
+  .faixa:hover .fita{animation-play-state:paused}
+
+  /* Véu nas quatro bordas pra faixa nascer e morrer no fundo, sem corte seco.
+     Some no fundo da página, não em branco. */
+  .veu{position:absolute; z-index:2; pointer-events:none}
+  .veu.topo{inset:0 0 auto 0; height:28%; background:linear-gradient(to bottom,var(--off) 12%,transparent)}
+  .veu.base{inset:auto 0 0 0; height:28%; background:linear-gradient(to top,var(--off) 12%,transparent)}
+  .veu.esq{inset:0 auto 0 0; width:12%; background:linear-gradient(to right,var(--off),transparent)}
+  .veu.dir{inset:0 0 0 auto; width:12%; background:linear-gradient(to left,var(--off),transparent)}
+
+  /* ---------- sobre ---------- */
+  .duas{display:grid; grid-template-columns:1fr 1fr; gap:clamp(34px,6vw,86px); align-items:start}
+
+  /* ---------- serviços ---------- */
+  .servicos{display:grid; grid-template-columns:repeat(2,1fr); gap:0; margin-top:12px}
+  .servico{padding:38px 40px 42px 0; border-top:1px solid var(--medio)}
+  .servico:nth-child(odd){padding-right:clamp(28px,5vw,70px)}
+  .servico .num{display:block; margin-bottom:18px}
+  .servico h3{margin-bottom:12px}
+  .servico p{margin:0; font-size:.94rem; color:var(--claro); line-height:1.7}
+
+  /* ---------- projetos ---------- */
+  .projeto{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,72px); align-items:center; padding:clamp(40px,7vh,78px) 0}
+  .projeto:first-child{padding-top:0}
+  .projeto + .projeto{border-top:1px solid var(--claro)}
+  /* alterna o lado da foto — .lista existe pra esse nth-child não depender
+     da posição do cabeçalho da seção */
+  .lista .projeto:nth-child(even) .ficha{order:-1}
+  .projeto .ficha h3{font-size:clamp(1.5rem,3vw,2.15rem); font-weight:200; letter-spacing:-.02em; margin-bottom:16px}
+  .ficha dl{display:grid; grid-template-columns:auto 1fr; gap:10px 26px; margin:26px 0 0; font-size:.85rem}
+  .ficha dt{color:var(--medio); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; padding-top:2px}
+  .ficha dd{margin:0}
+
+  /* ---------- processo ---------- */
+  .etapas{display:grid; grid-template-columns:repeat(4,1fr); gap:0}
+  .etapa{padding:34px 26px 36px 0; border-top:1px solid var(--claro)}
+  .etapa .num{display:block; margin-bottom:16px}
+  .etapa h3{margin-bottom:10px}
+  .etapa p{margin:0; font-size:.9rem; color:var(--medio); line-height:1.65}
+
+  /* ---------- escritório ---------- */
+  .dupla{display:grid; grid-template-columns:1.05fr 1fr; gap:clamp(34px,6vw,80px); align-items:center}
+  .socios{display:flex; flex-wrap:wrap; gap:14px 34px; margin-top:30px}
+  .socio strong{display:block; font-weight:300; font-size:1.05rem; letter-spacing:.01em}
+  .socio span{font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; color:var(--claro)}
+
+  /* ---------- contato ---------- */
+  .contato h2{max-width:16ch; margin-bottom:28px}
+  .canais{display:flex; flex-wrap:wrap; gap:16px; margin-top:38px}
+  .endereco{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:34px; max-width:760px; margin-top:26px}
+  .endereco p{margin:10px 0 0; font-size:.98rem; line-height:1.65}
+  .endereco a{text-decoration:none; border-bottom:1px solid var(--claro); transition:border-color .25s}
+  .endereco a:hover{border-bottom-color:var(--grafite)}
+  .mapa{display:inline-block; margin-top:12px; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--medio); text-decoration:none; border-bottom:1px solid var(--claro)}
+  .mapa:hover{color:var(--grafite)}
+
+  /* ---------- rodapé ---------- */
+  footer{background:var(--rodape); color:var(--claro); padding:64px 0 34px; position:relative; z-index:1}
+  footer .wrap{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:38px}
+  footer .marca .nome{color:var(--off)}
+  footer .marca svg path,footer .marca svg rect{stroke:var(--off)}
+  footer h4{margin:0 0 14px; font-size:.68rem; font-weight:400; letter-spacing:.24em; text-transform:uppercase; color:var(--medio)}
+  footer a{color:var(--claro); text-decoration:none; transition:color .25s}
+  footer a:hover{color:var(--off)}
+  footer ul{list-style:none; margin:0; padding:0; font-size:.92rem; line-height:2}
+  .creditos{
+    max-width:var(--max); margin:52px auto 0;
+    padding:22px 28px 0 calc(var(--rail) + 8px);
+    border-top:1px solid #333; display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    font-size:.72rem; letter-spacing:.1em; color:var(--medio);
+  }
+
+  /* ---------- revelação ----------
+     O conteúdo aparece quando a linha do eixo chega nele. */
+  .rev{opacity:0; transform:translateY(26px); transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+  .rev.in{opacity:1; transform:none}
+  .rev.d1{transition-delay:.09s} .rev.d2{transition-delay:.18s}
+  .rev.d3{transition-delay:.27s} .rev.d4{transition-delay:.36s}
+
+  /* ---------- acervo ----------
+     A vitrine passa; aqui o visitante para e olha. É a seção que faltava pra
+     quem chega no site querendo ver o trabalho, e não só sentir o clima dele.
+     Mesma grade do slot, canto reto, sem moldura e sem overlay — a cor da
+     página continua sendo a foto. Cada peça abre em alta na lupa. */
+  .cab-acervo{display:flex; align-items:baseline; gap:22px; margin:32px 0 26px; flex-wrap:wrap}
+  .cab-acervo p{margin:0; font-size:.92rem; color:var(--medio); max-width:52ch}
+
+  .acervo{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+  .peca{
+    position:relative; display:block; overflow:hidden;
+    aspect-ratio:4/3; background:var(--card);
+    text-decoration:none; cursor:zoom-in;
+  }
+  .peca img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform .7s cubic-bezier(.16,1,.3,1);
+  }
+  .peca:hover img,.peca:focus-visible img{transform:scale(1.045)}
+  /* o foco é o traço da marca, não o anel do sistema */
+  .peca:focus{outline:none}
+  .peca:focus-visible{outline:1px solid var(--grafite); outline-offset:3px}
+  /* a marca da lupa é o próprio símbolo — quadrado e quarto de círculo */
+  .peca .marcador{
+    position:absolute; right:10px; bottom:10px; z-index:3;
+    width:26px; height:26px; display:grid; place-items:center;
+    background:rgba(234,234,234,.93); opacity:0; transition:opacity .3s ease;
+  }
+  .peca:hover .marcador,.peca:focus-visible .marcador{opacity:1}
+  .peca .marcador svg{width:13px; height:13px}
+  .peca .marcador svg path,.peca .marcador svg rect{fill:none; stroke:var(--grafite); stroke-width:9}
+
+  /* ---------- lupa ----------
+     <dialog> entrega ESC e armadilha de foco sem biblioteca nenhuma. Onde ele
+     não existir, cada peça continua sendo um link pro arquivo em alta: a foto
+     abre do mesmo jeito, só não abre por cima da página. */
+  .lupa{
+    width:100vw; height:100vh; max-width:100vw; max-height:100vh;
+    padding:0; border:0; background:transparent; overflow:hidden;
+    color:var(--off);
+  }
+  .lupa::backdrop{background:rgba(31,31,31,.95)}
+  .lupa .palco{
+    position:absolute; inset:0;
+    display:grid; grid-template-rows:1fr auto; gap:18px;
+    padding:clamp(46px,7vh,76px) clamp(58px,6vw,92px) clamp(20px,4vh,40px);
+  }
+  .lupa figure{margin:0; min-height:0; display:grid; place-items:center}
+  .lupa figure img{
+    max-width:100%; max-height:100%; width:auto; height:auto;
+    object-fit:contain; display:block;
+    opacity:1; transition:opacity .35s ease;
+  }
+  .lupa figure img.carregando{opacity:.15}
+  .lupa .legenda{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:22px; flex-wrap:wrap; width:100%; max-width:var(--max); margin:0 auto;
+  }
+  .lupa .legenda .meta{color:var(--claro)}
+  .lupa .x,.lupa .nav{
+    position:absolute; z-index:4;
+    width:46px; height:46px; display:grid; place-items:center;
+    background:transparent; border:1px solid var(--medio); color:var(--off);
+    font:inherit; font-size:.95rem; line-height:1; cursor:pointer;
+    transition:background .25s ease,color .25s ease,border-color .25s ease;
+  }
+  .lupa .x:hover,.lupa .nav:hover{background:var(--off); color:var(--grafite); border-color:var(--off)}
+  /* O <dialog> põe o foco no primeiro botão ao abrir — e o X aceso em bloco
+     branco parecia defeito. O foco fica no traço de fora, como no acervo. */
+  .lupa .x:focus-visible,.lupa .nav:focus-visible{outline:1px solid var(--off); outline-offset:3px}
+  .lupa .x{top:clamp(12px,2.4vh,22px); right:clamp(12px,2.4vw,26px)}
+  .lupa .nav{top:50%; transform:translateY(-50%)}
+  .lupa .ant{left:clamp(8px,1.4vw,20px)}
+  .lupa .prox{right:clamp(8px,1.4vw,20px)}
+
+  /* o cartão da vitrine abre a mesma lupa — some o cursor de "foto parada" */
+  .vitrine .cartao img{cursor:zoom-in}
+
+  @media (max-width:900px){
+    .acervo{grid-template-columns:repeat(3,1fr); gap:12px}
+    .lupa .palco{padding:clamp(44px,6vh,60px) clamp(14px,4vw,24px) clamp(18px,3vh,28px)}
+    /* no celular a seta por cima da foto atrapalha mais do que ajuda:
+       fica o arrasto lateral, o ESC e o X */
+    .lupa .nav{display:none}
+  }
+  @media (max-width:560px){
+    .acervo{grid-template-columns:repeat(2,1fr); gap:10px}
+    .cab-acervo{gap:10px; margin-top:26px}
+  }
+
+  /* ---------- responsivo ---------- */
+  @media (max-width:900px){
+    :root{--rail:52px}
+    body{font-size:16px}
+    nav{display:none}
+    .duas,.projeto,.dupla,.etapas,.servicos,.endereco{grid-template-columns:1fr}
+    .endereco{gap:26px}
+    .projeto{gap:26px}
+    .projeto:nth-child(even) .ficha{order:0}
+    .servico,.etapa{padding-right:0}
+    .footer-grid{grid-template-columns:1fr}
+    footer .wrap{grid-template-columns:1fr; gap:30px}
+    /* na tela estreita a diagonal precisa ser mais discreta, senão só cabe
+       meio cartão por faixa */
+    .vitrine{--angulo:-10deg; --cartao:210px; --vao:14px; height:clamp(340px,52vh,460px)}
+    .faixas{width:260vw}
+  }
+  @media (max-width:560px){
+    .wrap,.topo{padding-right:20px}
+    .cab{flex-direction:column; gap:14px; margin-bottom:32px}
+    /* sem isso o rótulo do botão quebra em duas linhas na tela estreita */
+    .btn{padding:15px 22px; font-size:.66rem; letter-spacing:.13em; gap:11px}
+    .canais{gap:12px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rev{opacity:1; transform:none; transition:none}
+    .simbolo path,.simbolo rect{animation:none; stroke-dashoffset:0}
+    .no{opacity:1}
+    .no .anel{transform:none}
+    /* a vitrine para de vez e vira uma colagem estática */
+    .fita{animation:none}
+    *{transition-duration:.01ms !important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== EIXO: a linha que se desenha conforme a rolagem ===== -->
+<svg id="eixo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
+  <path id="eixoTraco" d=""></path>
+  <g id="eixoNos"></g>
+</svg>
+
+<header id="topo">
+  <div class="topo">
+    <a class="marca" href="#inicio" aria-label="DECÔ — início">
+      <svg viewBox="0 0 112 112" aria-hidden="true">
+        <path d="M4 68V28A24 24 0 0 1 28 4h40v64z" fill="none" stroke="currentColor" stroke-width="5"/>
+        <rect x="44" y="44" width="64" height="64" fill="none" stroke="currentColor" stroke-width="5"/>
+      </svg>
+      <span class="nome">DECÔ</span>
+    </a>
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#escritorio">Escritório</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inicio" data-no>
+    <div class="wrap">
+      <!-- O símbolo se desenha ao abrir: mesma ideia do eixo, em miniatura. -->
+      <svg class="simbolo" viewBox="0 0 112 112" aria-label="Símbolo DECÔ" style="--len:280">
+        <path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/>
+        <rect x="44" y="44" width="64" height="64" style="--len:256"/>
+      </svg>
+
+      <p class="meta rev d1" style="margin-bottom:26px">Architecture • Interiors • Design</p>
+      <h1 class="rev d2">Arquitetura<br><em>que se vive.</em></h1>
+      <p class="lead rev d3">
+        Projeto de arquitetura e interiores para quem exige o mesmo cuidado
+        no desenho e na execução. Cada espaço é resolvido inteiro — da primeira
+        linha à última entrega.
+      </p>
+      <div class="local rev d3">
+        <span class="meta">Ribeirão Preto — SP</span>
+        <span class="meta">Andreza Bertollazzi &amp; Vinicius Gutierrez</span>
+      </div>
+      <a class="btn rev d4" href="#contato">
+        Conversar sobre um projeto
+        <span class="seta" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ VITRINE ============
+       O acervo passando em três faixas na diagonal. Cada faixa traz o mesmo
+       conjunto duas vezes: a animação anda -50% e recomeça na emenda, então
+       o laço é invisível. Direção e velocidade mudam por faixa.
+       Pra trocar as fotos, é só mexer nos `assets/proj-NN.jpg` — a marcação
+       não sabe qual projeto é qual.
+
+       Duas coisas mudaram em 09/10/2026:
+       · `data-i` liga cada cartão à posição da foto no acervo, então clicar
+         num cartão abre a mesma lupa da grade lá embaixo
+       · `aria-hidden` porque essas 12 fotos agora têm uma versão acessível e
+         navegável por teclado na grade do acervo. Sem isso o leitor de tela
+         lia o acervo inteiro duas vezes, e aqui é só atmosfera. -->
+  <section class="vitrine" aria-hidden="true">
+    <div class="faixas">
+
+      <div class="faixa">
+        <div class="fita" style="--dur:74s">
+          <div class="cartao"><img data-i="0" src="assets/proj-01.jpg" alt="Suíte com painel e closet espelhado" decoding="async"></div>
+          <div class="cartao"><img data-i="1" src="assets/proj-02.jpg" alt="Área externa com deck e paisagismo" decoding="async"></div>
+          <div class="cartao"><img data-i="2" src="assets/proj-03.jpg" alt="Brinquedoteca infantil" decoding="async"></div>
+          <div class="cartao"><img data-i="3" src="assets/proj-04.jpg" alt="Quarto com cabeceira e roupa de cama em listras" decoding="async"></div>
+        </div>
+      </div>
+
+      <div class="faixa">
+        <div class="fita re" style="--dur:96s">
+          <div class="cartao"><img data-i="4" src="assets/proj-05.jpg" alt="Fachada em tijolo branco com esquadria verde" decoding="async"></div>
+          <div class="cartao"><img data-i="5" src="assets/proj-06.jpg" alt="Área de lazer com ombrelone e lounge" decoding="async"></div>
+          <div class="cartao"><img data-i="6" src="assets/proj-07.jpg" alt="Salão comercial com banqueta estofada e azulejo terracota" decoding="async"></div>
+          <div class="cartao"><img data-i="7" src="assets/proj-08.jpg" alt="Fachada com portão de madeira e muro de pedra" decoding="async"></div>
+        </div>
+      </div>
+
+      <div class="faixa">
+        <div class="fita" style="--dur:64s">
+          <div class="cartao"><img data-i="8" src="assets/proj-09.jpg" alt="Living integrado com forro ripado" decoding="async"></div>
+          <div class="cartao"><img data-i="9" src="assets/proj-10.jpg" alt="Quarto com parede de tijolo aparente" decoding="async"></div>
+          <div class="cartao"><img data-i="10" src="assets/proj-11.jpg" alt="Fachada com portão de ferro e jardim" decoding="async"></div>
+          <div class="cartao"><img data-i="11" src="assets/proj-12.jpg" alt="Oratório em nicho de madeira" decoding="async"></div>
+        </div>
+      </div>
+
+    </div>
+    <span class="veu topo" aria-hidden="true"></span>
+    <span class="veu base" aria-hidden="true"></span>
+    <span class="veu esq" aria-hidden="true"></span>
+    <span class="veu dir" aria-hidden="true"></span>
+  </section>
+
+  <!-- ============ 01 SOBRE ============ -->
+  <section class="bloco" id="sobre" data-no>
+    <div class="wrap">
+      <div class="cab rev">
+        <span class="num meta">01</span>
+        <h2>O projeto não termina no desenho.</h2>
+      </div>
+      <div class="duas">
+        <div class="rev d1">
+          <p class="lead">
+            A DECÔ nasceu da parceria entre Andreza Bertollazzi e Vinicius Gutierrez.
+            Dois olhares sobre o mesmo espaço — e uma exigência só: que a casa funcione
+            tão bem quanto aparenta.
+          </p>
+        </div>
+        <div class="rev d2">
+          <!-- [CONFIRMAR] Todo esse parágrafo é leitura da Hella sobre o posicionamento
+               do perfil. Precisa da revisão dos sócios antes de publicar. -->
+          <p class="apoio">
+            Trabalhamos com poucos projetos por vez. É o que permite acompanhar cada
+            etapa de perto: o estudo, a escolha do material, o detalhe da marcenaria,
+            a visita de obra. Nada é delegado ao acaso e nada é resolvido em catálogo.
+          </p>
+          <p class="apoio">
+            O resultado é um espaço que responde a quem mora nele — à rotina, à luz do
+            terreno, ao jeito de receber. Arquitetura e interiores pensados juntos,
+            desde a primeira conversa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 SERVIÇOS ============ -->
+  <section class="bloco escuro" id="servicos" data-no>
+    <div class="wrap">
+      <div class="cab rev">
+        <span class="num meta">02</span>
+        <h2>O que fazemos</h2>
+      </div>
+      <!-- [CONFIRMAR] Os quatro serviços foram deduzidos da bio ("Architecture •
+           Interiors • Design") e dos destaques do Instagram (Casa J.B, Obra Alma,
+           Quarto Pietro). Confirmar a lista real e o que está incluso em cada um. -->
+      <div class="servicos">
+        <div class="servico rev d1">
+          <span class="num meta">01</span>
+          <h3>Projeto de Arquitetura</h3>
+          <p>Do estudo preliminar ao executivo. Implantação, planta, volumetria e todo o
+             detalhamento técnico que a obra precisa pra sair como foi desenhada.</p>
+        </div>
+        <div class="servico rev d2">
+          <span class="num meta">02</span>
+          <h3>Interiores</h3>
+          <p>Layout, marcenaria, iluminação, revestimento e mobiliário. O interior é
+             projetado junto com a arquitetura, não depois dela.</p>
+        </div>
+        <div class="servico rev d1">
+          <span class="num meta">03</span>
+          <h3>Acompanhamento de Obra</h3>
+          <p>Visita técnica, compatibilização e decisão em canteiro. É a etapa que separa
+             o projeto bonito no papel do espaço entregue certo.</p>
+        </div>
+        <div class="servico rev d2">
+          <span class="num meta">04</span>
+          <h3>Ambiente Único</h3>
+          <p>Um cômodo resolvido por inteiro, para quem não vai reformar a casa toda —
+             com o mesmo nível de detalhe de um projeto completo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 PROJETOS ============ -->
+  <section class="bloco" id="projetos" data-no>
+    <div class="wrap">
+      <div class="cab rev">
+        <span class="num meta">03</span>
+        <h2>Projetos</h2>
+      </div>
+
+      <!-- Os nomes são reais (destaques do Instagram). Ano, local e escopo são
+           [CONFIRMAR] — pedir a ficha técnica de cada um aos sócios. -->
+      <div class="lista">
+      <div class="projeto">
+        <div class="slot r43 rev">
+          <img src="assets/casa-jb.jpg" alt="Casa J.B — projeto residencial da DECÔ" loading="lazy" onerror="this.dataset.falhou=1">
+          <div class="aviso" aria-hidden="true">
+            <svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg>
+            <span class="meta">Fotografia em preparação</span>
+          </div>
+        </div>
+        <div class="ficha rev d1">
+          <span class="meta">Residencial</span>
+          <h3>Casa J.B</h3>
+          <p class="apoio">Projeto de arquitetura e interiores desenvolvido por inteiro pelo
+             escritório — da concepção ao acompanhamento da execução.</p>
+          <dl>
+            <dt>Local</dt><dd>Ribeirão Preto — SP <span class="apoio">[CONFIRMAR]</span></dd>
+            <dt>Escopo</dt><dd>Arquitetura + Interiores <span class="apoio">[CONFIRMAR]</span></dd>
+            <dt>Ano</dt><dd class="apoio">[CONFIRMAR]</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="projeto">
+        <div class="slot r43 rev">
+          <img src="assets/obra-alma.jpg" alt="Obra Alma — acompanhamento de obra pela DECÔ" loading="lazy" onerror="this.dataset.falhou=1">
+          <div class="aviso" aria-hidden="true">
+            <svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg>
+            <span class="meta">Fotografia em preparação</span>
+          </div>
+        </div>
+        <div class="ficha rev d1">
+          <span class="meta">Obra</span>
+          <h3>Obra Alma</h3>
+          <p class="apoio">Projeto acompanhado em canteiro do início ao fim, com decisão
+             técnica tomada no lugar — onde ela custa menos e resolve mais.</p>
+          <dl>
+            <dt>Local</dt><dd class="apoio">[CONFIRMAR]</dd>
+            <dt>Escopo</dt><dd>Projeto + Acompanhamento <span class="apoio">[CONFIRMAR]</span></dd>
+            <dt>Ano</dt><dd class="apoio">[CONFIRMAR]</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="projeto">
+        <!-- Único projeto com mais de uma foto: cinco ângulos do mesmo quarto,
+             trocando sozinhos. A primeira é a única com `visivel` no HTML — se o
+             JS não rodar, ela fica fixa e a seção continua de pé.
+             As imagens são 9:16 (frames do Reels), por isso o slot é 3:4: corta
+             pouco e não clipa o topo de nenhuma delas. -->
+        <div class="slot r34 galeria rev" data-galeria>
+          <!-- ⚠️ A `quarto-pietro-1.jpg` (vista geral) saiu da rotação em 09/10/2026,
+               na hora de publicar. Motivo: o porta-retrato no criado-mudo mostra o
+               rosto do bebê, e o site agora é público e indexável pelo Google — o que
+               é diferente de um post no Instagram. Os pais não confirmaram autorização.
+               O arquivo continua em assets/, intacto.
+               PRA VOLTAR, quando a autorização chegar: troque a linha de baixo por
+                 <img class="visivel" src="assets/quarto-pietro-1.jpg" alt="Quarto Pietro — vista do berço, poltrona de amamentação e luminária" onerror="this.dataset.falhou=1">
+               e devolva o alt vazio para a quarto-pietro-2. -->
+          <img class="visivel" src="assets/quarto-pietro-2.jpg" alt="Quarto Pietro — berço, móbile e almofada bordada" onerror="this.dataset.falhou=1">
+          <img src="assets/quarto-pietro-3.jpg" alt="" aria-hidden="true" loading="lazy">
+          <img src="assets/quarto-pietro-4.jpg" alt="" aria-hidden="true" loading="lazy">
+          <img src="assets/quarto-pietro-5.jpg" alt="" aria-hidden="true" loading="lazy">
+          <!-- A sexta entrou em 09/10/2026. Ela estava fora porque é 9:16 e o
+               topo da cúpula fica a 8% da altura: no corte centralizado do slot
+               3:4 a luminária era decepada. `.topo` ancora o enquadramento no
+               alto — o corte sai no rodapé da cama, onde não faz falta. -->
+          <img class="topo" src="assets/quarto-pietro-6.jpg" alt="" aria-hidden="true" loading="lazy">
+          <span class="cortina" aria-hidden="true"></span>
+          <div class="aviso" aria-hidden="true">
+            <svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg>
+            <span class="meta">Fotografia em preparação</span>
+          </div>
+        </div>
+        <div class="ficha rev d1">
+          <span class="meta">Interiores</span>
+          <h3>Quarto Pietro</h3>
+          <!-- Texto reescrito em 10/08/2026 a partir das fotos reais: é quarto de
+               bebê, e não tem marcenaria sob medida à vista. -->
+          <p class="apoio">Quarto de bebê resolvido inteiro — papel de parede, prateleiras,
+             iluminação e enxoval na mesma paleta de verde-sálvia, azul e cru. Cada peça
+             foi escolhida pra compor com o desenho da parede, não pra preencher espaço.</p>
+          <dl>
+            <dt>Local</dt><dd class="apoio">[CONFIRMAR]</dd>
+            <dt>Escopo</dt><dd>Interiores — quarto de bebê <span class="apoio">[CONFIRMAR]</span></dd>
+            <dt>Ano</dt><dd class="apoio">[CONFIRMAR]</dd>
+          </dl>
+        </div>
+      </div>
+      </div>
+
+      <!-- ============ ACERVO ============
+           A vitrine lá em cima passa; aqui o visitante para e olha. São as
+           mesmas 12 imagens do acervo, agora em grade, clicáveis e em alta.
+           Sem nome de projeto: o que cada uma é já está dito na legenda, e
+           atribuir imagem a "Casa J.B" ou "Obra Alma" sem os sócios
+           confirmarem seria inventar ficha técnica.
+           Cada peça é um link pro arquivo em alta — sem JS a foto abre na
+           aba; com JS ela abre na lupa, por cima da página. -->
+      <hr class="regra rev" style="margin:clamp(40px,7vh,78px) 0 0">
+      <div class="cab-acervo rev">
+        <span class="meta">Acervo</span>
+        <p>Imagens de projeto e de obra assinadas pelo escritório. Abra qualquer
+           uma para ver em tela cheia.</p>
+      </div>
+      <div class="acervo rev d1">
+        <a class="peca" href="assets/alta/proj-01.jpg" data-legenda="Suíte com painel ripado e closet espelhado">
+          <img src="assets/proj-01.jpg" alt="Suíte com painel ripado e closet espelhado" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-02.jpg" data-legenda="Área externa com spa, deck de madeira e ciprestes">
+          <img src="assets/proj-02.jpg" alt="Área externa com spa, deck de madeira e ciprestes" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-03.jpg" data-legenda="Brinquedoteca com marcenaria lúdica e forro em nuvem">
+          <img src="assets/proj-03.jpg" alt="Brinquedoteca com marcenaria lúdica e forro em nuvem" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-04.jpg" data-legenda="Quarto em listras azuis com gravuras botânicas">
+          <img src="assets/proj-04.jpg" alt="Quarto em listras azuis com gravuras botânicas" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-05.jpg" data-legenda="Fachada em tijolo branco com esquadria verde e espelho d'água">
+          <img src="assets/proj-05.jpg" alt="Fachada em tijolo branco com esquadria verde e espelho d'água" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-06.jpg" data-legenda="Área de lazer com ombrelone, cobogó e espelho d'água">
+          <img src="assets/proj-06.jpg" alt="Área de lazer com ombrelone, cobogó e espelho d'água" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-07.jpg" data-legenda="Salão comercial com banqueta estofada e azulejo terracota">
+          <img src="assets/proj-07.jpg" alt="Salão comercial com banqueta estofada e azulejo terracota" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-08.jpg" data-legenda="Fachada em pedra, madeira ripada e portão preto">
+          <img src="assets/proj-08.jpg" alt="Fachada em pedra, madeira ripada e portão preto" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-09.jpg" data-legenda="Living integrado à cozinha com forro ripado de madeira">
+          <img src="assets/proj-09.jpg" alt="Living integrado à cozinha com forro ripado de madeira" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-10.jpg" data-legenda="Quarto com parede de tijolo pintado e enxoval floral">
+          <img src="assets/proj-10.jpg" alt="Quarto com parede de tijolo pintado e enxoval floral" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-11.jpg" data-legenda="Fachada com portão de ferro trabalhado e jardim">
+          <img src="assets/proj-11.jpg" alt="Fachada com portão de ferro trabalhado e jardim" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+        <a class="peca" href="assets/alta/proj-12.jpg" data-legenda="Oratório em nicho de madeira">
+          <img src="assets/proj-12.jpg" alt="Oratório em nicho de madeira" loading="lazy" decoding="async">
+          <span class="marcador" aria-hidden="true"><svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg></span>
+        </a>
+      </div>
+
+      <p class="rev" style="margin:44px 0 0">
+        <a class="btn" href="https://www.instagram.com/deco.arquitetos/" target="_blank" rel="noopener">
+          Ver mais no Instagram <span class="seta" aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 04 PROCESSO ============ -->
+  <section class="bloco" id="processo" data-no style="background:var(--card)">
+    <div class="wrap">
+      <div class="cab rev">
+        <span class="num meta">04</span>
+        <h2>Como trabalhamos</h2>
+      </div>
+      <!-- [CONFIRMAR] As quatro etapas são o fluxo padrão de escritório de arquitetura.
+           Confirmar com os sócios o processo real e o que entra em cada fase. -->
+      <div class="etapas">
+        <div class="etapa rev d1">
+          <span class="num meta">01</span>
+          <h3>Conversa</h3>
+          <p>Entendemos o espaço, a rotina e o orçamento antes de desenhar qualquer linha.</p>
+        </div>
+        <div class="etapa rev d2">
+          <span class="num meta">02</span>
+          <h3>Estudo</h3>
+          <p>Primeiras propostas de layout e partido, apresentadas pra decidir junto.</p>
+        </div>
+        <div class="etapa rev d3">
+          <span class="num meta">03</span>
+          <h3>Projeto</h3>
+          <p>Detalhamento executivo: marcenaria, iluminação, acabamento e memorial.</p>
+        </div>
+        <div class="etapa rev d4">
+          <span class="num meta">04</span>
+          <h3>Obra</h3>
+          <p>Acompanhamento em canteiro até a entrega do espaço pronto pra usar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 ESCRITÓRIO ============ -->
+  <section class="bloco escuro" id="escritorio" data-no>
+    <div class="wrap">
+      <div class="cab rev">
+        <span class="num meta">05</span>
+        <h2>Quem assina</h2>
+      </div>
+      <div class="dupla">
+        <div class="slot r45 rev">
+          <img class="alto" src="assets/dupla.jpg" alt="Andreza Bertollazzi e Vinicius Gutierrez, sócios da DECÔ" loading="lazy" onerror="this.dataset.falhou=1">
+          <div class="aviso" aria-hidden="true">
+            <svg viewBox="0 0 112 112"><path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/><rect x="44" y="44" width="64" height="64"/></svg>
+            <span class="meta">dupla.jpg — foto dos sócios</span>
+          </div>
+        </div>
+        <div class="rev d1">
+          <p class="lead">
+            Dois arquitetos, um escritório. Todo projeto passa pelos dois — e é isso que
+            garante que nada seja resolvido no automático.
+          </p>
+          <p class="apoio">
+            O contato é direto com quem desenha. Não há camada de intermediário entre a
+            sua ideia e o projeto que vai pra obra.
+          </p>
+          <div class="socios">
+            <div class="socio">
+              <strong>Andreza Bertollazzi</strong>
+              <span>Arquiteta — CAU [CONFIRMAR]</span>
+            </div>
+            <div class="socio">
+              <strong>Vinicius Gutierrez</strong>
+              <span>Arquiteto — CAU [CONFIRMAR]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 CONTATO ============ -->
+  <section class="bloco contato" id="contato" data-no>
+    <div class="wrap">
+      <div class="cab rev">
+        <span class="num meta">06</span>
+        <h2>Vamos conversar sobre o seu espaço.</h2>
+      </div>
+      <p class="lead rev d1" style="max-width:46ch">
+        Conte o que você quer resolver. Respondemos com os próximos passos, o escopo
+        que faz sentido e o prazo do estudo.
+      </p>
+      <div class="canais rev d2">
+        <!-- ⚠️ wa.me/55XXXXXXXXXXX é placeholder inválido de propósito, pra ninguém
+             discar por engano. Trocar nos 3 lugares antes de publicar. -->
+        <a class="btn" href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener">
+          WhatsApp <span class="seta" aria-hidden="true">→</span>
+        </a>
+        <a class="btn" href="mailto:contato@deco-arquitetura.com.br">
+          E-mail <span class="seta" aria-hidden="true">→</span>
+        </a>
+        <a class="btn" href="https://www.instagram.com/deco.arquitetos/" target="_blank" rel="noopener">
+          @deco.arquitetos <span class="seta" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <hr class="regra rev" style="margin-top:56px">
+      <div class="endereco rev">
+        <div>
+          <span class="meta">Escritório</span>
+          <p>
+            Avenida Independência, 3840<br>
+            Residencial Flórida — Ribeirão Preto/SP<br>
+            14026-160
+          </p>
+          <a class="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Independ%C3%AAncia%2C+3840%2C+Residencial+Fl%C3%B3rida%2C+Ribeir%C3%A3o+Preto+-+SP%2C+14026-160" target="_blank" rel="noopener">Ver no mapa</a>
+        </div>
+        <div>
+          <span class="meta">E-mail</span>
+          <p><a href="mailto:contato@deco-arquitetura.com.br">contato@deco-arquitetura.com.br</a></p>
+          <!-- [CONFIRMAR] visita ao escritório é só com hora marcada? -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="marca" href="#inicio" style="margin-bottom:18px">
+        <svg viewBox="0 0 112 112" aria-hidden="true">
+          <path d="M4 68V28A24 24 0 0 1 28 4h40v64z" fill="none" stroke="currentColor" stroke-width="5"/>
+          <rect x="44" y="44" width="64" height="64" fill="none" stroke="currentColor" stroke-width="5"/>
+        </svg>
+        <span class="nome">DECÔ</span>
+      </a>
+      <p style="font-size:.9rem; max-width:34ch; margin-top:16px">
+        Arquitetura &amp; Interiores.<br>
+        Avenida Independência, 3840<br>
+        Residencial Flórida — Ribeirão Preto/SP<br>
+        14026-160
+      </p>
+    </div>
+    <div>
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#escritorio">Escritório</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="mailto:contato@deco-arquitetura.com.br">contato@deco-arquitetura.com.br</a></li>
+        <li><a href="https://www.instagram.com/deco.arquitetos/" target="_blank" rel="noopener">@deco.arquitetos</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="creditos">
+    <span>© 2026 DECÔ Arquitetura &amp; Interiores — CAU nº [CONFIRMAR]</span>
+    <span>Site por Hella Labs</span>
+  </div>
+</footer>
+
+<!-- ===== LUPA: o acervo em tela cheia =====
+     Fica fora do <main> de propósito: <dialog> modal sobe pra camada de topo
+     do navegador, então a posição na marcação não importa — e aqui ele não
+     entra na conta de altura do eixo.
+     A foto em alta só é baixada quando alguém abre. -->
+<dialog id="lupa" class="lupa" aria-label="Acervo da DECÔ em tela cheia">
+  <div class="palco" data-fechar>
+    <figure data-fechar>
+      <img alt="">
+    </figure>
+    <div class="legenda">
+      <span class="meta" data-desc></span>
+      <span class="meta" data-contagem></span>
+    </div>
+  </div>
+  <button class="x" type="button" aria-label="Fechar">&#10005;</button>
+  <button class="nav ant" type="button" aria-label="Imagem anterior">&#8592;</button>
+  <button class="nav prox" type="button" aria-label="Próxima imagem">&#8594;</button>
+</dialog>
+
+<script>
+/* ============================================================
+   EIXO — a linha que se desenha conforme a rolagem
+   ------------------------------------------------------------
+   É a interação que o cliente pediu. A referência não é gratuita:
+   é a linha de eixo / cota do desenho técnico, e a curva de cada
+   desvio é um quarto de círculo — o mesmo canto arredondado do
+   símbolo da DECÔ.
+
+   Como funciona:
+   1. O SVG cobre a altura inteira do documento, numa calha à esquerda
+   2. O caminho é gerado em JS a partir da posição real de cada seção
+      [data-no], alternando entre duas colunas
+   3. stroke-dashoffset acompanha a rolagem — a linha "cresce"
+   4. Quando a ponta passa por um nó, o nó acende e a seção revela
+   ============================================================ */
+(function(){
+  var svg   = document.getElementById('eixo');
+  var traco = document.getElementById('eixoTraco');
+  var gNos  = document.getElementById('eixoNos');
+  var secoes = Array.prototype.slice.call(document.querySelectorAll('[data-no]'));
+  var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var L = 0, H = 0, nos = [], escuras = [], tick = false;
+
+  function montar(){
+    var W = svg.clientWidth || parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--rail')) || 88;
+    H = document.documentElement.scrollHeight;
+
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.style.height = H + 'px';
+
+    var xA = Math.round(W * 0.42);
+    var xB = Math.round(W * 0.72);
+    var R = Math.min(46, W * 0.55);   // altura do desvio
+    var K = R * 0.62;                 // tensão da curva
+
+    nos = secoes.map(function(sec, i){
+      var r = sec.getBoundingClientRect();
+      return {
+        el: sec,
+        y: Math.round(r.top + window.pageYOffset + Math.min(96, r.height * 0.16)),
+        x: (i % 2 === 0) ? xA : xB
+      };
+    }).sort(function(a,b){ return a.y - b.y; });
+
+    /* caminho: vertical, com um S-curve suave antes de cada nó que troca de coluna */
+    var atual = nos.length ? nos[0].x : xA;
+    var d = 'M ' + atual + ' 0';
+    var ultimoY = 0;
+
+    nos.forEach(function(no){
+      if (no.x === atual) return;
+      var yj = no.y - 78;                       // o desvio acontece antes do nó
+      if (yj - R <= ultimoY + 6) return;        // seções coladas: pula o desvio
+      d += ' L ' + atual + ' ' + (yj - R);
+      d += ' C ' + atual + ' ' + (yj - R + K) + ' ' + no.x + ' ' + (yj + R - K) + ' ' + no.x + ' ' + (yj + R);
+      atual = no.x;
+      ultimoY = yj + R;
+    });
+    d += ' L ' + atual + ' ' + H;
+
+    traco.setAttribute('d', d);
+    L = traco.getTotalLength();
+    traco.style.strokeDasharray = L;
+    traco.style.strokeDashoffset = calmo ? 0 : L;
+
+    /* nós — círculo cheio + anel que abre quando a linha chega */
+    gNos.textContent = '';
+    nos.forEach(function(no){
+      var g = document.createElementNS('http://www.w3.org/2000/svg','g');
+      g.setAttribute('class','no');
+      g.innerHTML =
+        '<circle class="anel" cx="'+no.x+'" cy="'+no.y+'" r="8.5"></circle>' +
+        '<circle class="no-ponto" cx="'+no.x+'" cy="'+no.y+'" r="2.4"></circle>';
+      gNos.appendChild(g);
+      no.g = g;
+    });
+
+    /* faixas escuras da página — o topo inverte quando passa por cima delas */
+    escuras = Array.prototype.map.call(
+      document.querySelectorAll('.escuro, footer'),
+      function(el){
+        var r = el.getBoundingClientRect();
+        return [r.top + window.pageYOffset, r.bottom + window.pageYOffset];
+      }
+    );
+
+    atualizar();
+  }
+
+  function atualizar(){
+    tick = false;
+    var vh = window.innerHeight;
+    var ponta = window.pageYOffset + vh * 0.82;   // onde está a ponta do traço
+
+    if (!calmo && L) {
+      var p = Math.max(0, Math.min(1, ponta / H));
+      traco.style.strokeDashoffset = L * (1 - p);
+    }
+    nos.forEach(function(no){
+      if (no.g) no.g.classList.toggle('on', ponta >= no.y);
+    });
+
+    var head = document.getElementById('topo');
+    head.classList.toggle('fixo', window.pageYOffset > 40);
+
+    var base = window.pageYOffset + 34;   // altura da barra fixa
+    var noEscuro = escuras.some(function(f){ return base >= f[0] && base <= f[1]; });
+    head.classList.toggle('sobre-escuro', noEscuro);
+  }
+
+  function pedir(){ if(!tick){ tick = true; requestAnimationFrame(atualizar); } }
+
+  window.addEventListener('scroll', pedir, {passive:true});
+  window.addEventListener('resize', montar);
+  window.addEventListener('load', montar);
+  montar();
+
+  /* remonta quando as imagens carregam e mudam a altura da página */
+  if ('ResizeObserver' in window) {
+    var ro = new ResizeObserver(function(){
+      if (Math.abs(document.documentElement.scrollHeight - H) > 24) montar();
+    });
+    ro.observe(document.body);
+  }
+})();
+
+/* ============================================================
+   VITRINE — o acervo passando em faixas na diagonal
+   ------------------------------------------------------------
+   No HTML cada faixa tem só as fotos originais. Aqui elas são
+   clonadas até a metade da fita cobrir a largura da faixa, e
+   então a metade inteira é duplicada. É isso que faz o laço
+   fechar sem buraco: a animação anda exatamente -50%, que é o
+   tamanho de uma metade.
+   Remonta no resize, porque a conta depende da largura da tela.
+   ============================================================ */
+(function(){
+  var fitas = document.querySelectorAll('.vitrine .fita');
+  if (!fitas.length) return;
+
+  function montar(){
+    Array.prototype.forEach.call(fitas, function(f){
+      /* guarda os cartões originais na primeira passada */
+      if (!f._base) f._base = Array.prototype.slice.call(f.children);
+
+      f.removeAttribute('data-pronto');
+      while (f.firstChild) f.removeChild(f.firstChild);
+      f._base.forEach(function(c){ f.appendChild(c); });
+
+      var umConjunto = f.scrollWidth;
+      var faixa = f.parentElement.clientWidth;
+      if (!umConjunto || !faixa) return;
+
+      /* repete o conjunto até a metade cobrir a faixa inteira */
+      var vezes = Math.max(1, Math.ceil(faixa / umConjunto));
+      for (var i = 1; i < vezes; i++) {
+        f._base.forEach(function(c){ f.appendChild(c.cloneNode(true)); });
+      }
+
+      /* duplica a metade — a cópia é decorativa, não vai pro leitor de tela */
+      Array.prototype.slice.call(f.children).forEach(function(c){
+        var copia = c.cloneNode(true);
+        copia.setAttribute('aria-hidden', 'true');
+        var im = copia.querySelector('img');
+        if (im) im.alt = '';
+        f.appendChild(copia);
+      });
+
+      f.dataset.pronto = '1';
+    });
+  }
+
+  var espera;
+  window.addEventListener('resize', function(){
+    clearTimeout(espera);
+    espera = setTimeout(montar, 250);
+  });
+  window.addEventListener('load', montar);
+  montar();
+})();
+
+/* ============================================================
+   GALERIA DE PROJETO
+   Troca a foto sozinha, em fade lento, só enquanto o bloco está na
+   tela. Fora dela o relógio para — não faz sentido gastar bateria
+   trocando imagem que ninguém está vendo.
+   Quem tem "reduzir movimento" ligado fica na primeira foto.
+   ============================================================ */
+(function(){
+  var galerias = document.querySelectorAll('[data-galeria]');
+  if (!galerias.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  var PAUSA = 3600;   /* tempo em cada foto */
+
+  var obs = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      var g = e.target;
+      if (e.isIntersecting) {
+        if (g._relogio) return;
+        var fotos = g.querySelectorAll('img');
+        if (fotos.length < 2) return;
+        g._relogio = setInterval(function(){
+          var atual = g.querySelector('img.visivel') || fotos[0];
+          var i = Array.prototype.indexOf.call(fotos, atual);
+          atual.classList.remove('visivel');
+          fotos[(i + 1) % fotos.length].classList.add('visivel');
+        }, PAUSA);
+      } else if (g._relogio) {
+        clearInterval(g._relogio);
+        g._relogio = null;
+      }
+    });
+  }, {threshold:.3});
+
+  Array.prototype.forEach.call(galerias, function(g){ obs.observe(g); });
+})();
+
+/* ============================================================
+   REVELAÇÃO — o conteúdo aparece quando a linha chega nele
+   ============================================================ */
+(function(){
+  var alvos = document.querySelectorAll('.rev');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    Array.prototype.forEach.call(alvos, function(el){ el.classList.add('in'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, {rootMargin:'0px 0px -12% 0px', threshold:0});
+
+  Array.prototype.forEach.call(alvos, function(el){
+    /* O que já está na primeira tela revela sem esperar rolagem — senão o CTA
+       do hero fica invisível no quadro inicial (ele cai dentro da margem
+       negativa do observer). */
+    if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('in'); return; }
+    obs.observe(el);
+  });
+})();
+
+/* ============================================================
+   LUPA — o acervo em alta, por cima da página
+   ------------------------------------------------------------
+   Progressivo de ponta a ponta: no HTML cada peça do acervo já é
+   um link pro arquivo em alta. Se <dialog> não existir ou o JS
+   não rodar, clicar abre a foto na aba e ninguém fica sem ver.
+   Com JS, o clique é interceptado e a foto abre aqui — com ESC,
+   setas, arrasto lateral e armadilha de foco que o <dialog> dá
+   de graça.
+   ============================================================ */
+(function(){
+  var pecas = Array.prototype.slice.call(document.querySelectorAll('.acervo .peca'));
+  var dlg   = document.getElementById('lupa');
+  if (!pecas.length || !dlg || typeof dlg.showModal !== 'function') return;
+
+  var foto     = dlg.querySelector('figure img');
+  var descricao= dlg.querySelector('[data-desc]');
+  var contagem = dlg.querySelector('[data-contagem]');
+  var atual    = 0;
+
+  var acervo = pecas.map(function(a){
+    return { alta: a.getAttribute('href'), legenda: a.getAttribute('data-legenda') || '' };
+  });
+
+  function dois(n){ return (n < 10 ? '0' : '') + n; }
+
+  function mostrar(n){
+    atual = (n % acervo.length + acervo.length) % acervo.length;
+    var item = acervo[atual];
+    foto.classList.add('carregando');
+    foto.src = item.alta;
+    foto.alt = item.legenda;
+    descricao.textContent = item.legenda;
+    contagem.textContent  = dois(atual + 1) + ' / ' + dois(acervo.length);
+  }
+  foto.addEventListener('load', function(){ foto.classList.remove('carregando'); });
+
+  function abrir(n){
+    mostrar(n);
+    if (!dlg.open) dlg.showModal();
+    /* o <dialog> cobre a tela, mas não segura a rolagem da página atrás */
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function fechar(){ if (dlg.open) dlg.close(); }
+
+  dlg.addEventListener('close', function(){
+    document.documentElement.style.overflow = '';
+    foto.removeAttribute('src');      /* não segura a imagem em alta na memória */
+  });
+
+  pecas.forEach(function(a, n){
+    a.addEventListener('click', function(e){
+      /* ctrl/cmd/shift e botão do meio continuam abrindo em aba nova */
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      abrir(n);
+    });
+  });
+
+  dlg.querySelector('.x').addEventListener('click', fechar);
+  dlg.querySelector('.ant').addEventListener('click', function(){ mostrar(atual - 1); });
+  dlg.querySelector('.prox').addEventListener('click', function(){ mostrar(atual + 1); });
+
+  /* clique no vazio ao redor da foto fecha; nos controles e na foto, não */
+  dlg.addEventListener('click', function(e){
+    if (e.target === dlg || (e.target.hasAttribute && e.target.hasAttribute('data-fechar'))) fechar();
+  });
+
+  dlg.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); mostrar(atual + 1); }
+  });
+
+  /* arrasto lateral no celular, onde as setas estão escondidas */
+  var x0 = null;
+  dlg.addEventListener('touchstart', function(e){ x0 = e.changedTouches[0].clientX; }, {passive:true});
+  dlg.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var d = e.changedTouches[0].clientX - x0;
+    x0 = null;
+    if (Math.abs(d) > 48) mostrar(atual + (d < 0 ? 1 : -1));
+  }, {passive:true});
+
+  /* A vitrine passa exatamente essas mesmas fotos, na mesma ordem. Clicar num
+     cartão abre a lupa na imagem certa. É delegação porque o JS da vitrine
+     clona os cartões — ouvinte preso no cartão original morreria no clone. */
+  var vitrine = document.querySelector('.vitrine');
+  if (vitrine) vitrine.addEventListener('click', function(e){
+    var im = e.target.closest && e.target.closest('.cartao img');
+    if (!im) return;
+    var n = parseInt(im.getAttribute('data-i'), 10);
+    if (!isNaN(n)) abrir(n);
+  });
+})();
+</script>
+<!--
+  Dados estruturados pra busca local. Só entra aqui o que está confirmado —
+  telefone e horário ficam de fora até os sócios passarem.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "additionalType": "https://schema.org/Architect",
+  "name": "DECÔ Arquitetura & Interiores",
+  "description": "Escritório de arquitetura e interiores em Ribeirão Preto/SP. Projeto, interiores e acompanhamento de obra.",
+  "email": "contato@deco-arquitetura.com.br",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Avenida Independência, 3840",
+    "addressLocality": "Ribeirão Preto",
+    "addressRegion": "SP",
+    "postalCode": "14026-160",
+    "addressCountry": "BR"
+  },
+  "areaServed": { "@type": "City", "name": "Ribeirão Preto" },
+  "sameAs": ["https://www.instagram.com/deco.arquitetos/"]
+}
+</script>
+</body>
+</html>
