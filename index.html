@@ -8,10 +8,6 @@
 <meta property="og:title" content="DECÔ — Arquitetura & Interiores">
 <meta property="og:description" content="Architecture • Interiors • Design. Ribeirão Preto/SP.">
 <meta property="og:type" content="website">
-<!-- og:image precisa de URL absoluta pra rede social conseguir ler. O domínio
-     veio do e-mail do escritório e ainda é [CONFIRMAR] — ver PENDENTE.md.
-     A `capa.jpg` que estava aqui não existe desde que a faixa estática virou
-     a vitrine: todo link compartilhado estava saindo sem imagem. -->
 <meta property="og:image" content="https://deco-arquitetura.com.br/assets/alta/proj-05.jpg">
 <meta property="og:image:width" content="1440">
 <meta property="og:image:height" content="810">
@@ -22,38 +18,13 @@
 <meta name="theme-color" content="#2C2C2C">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 112 112'%3E%3Cpath d='M4 68V28A24 24 0 0 1 28 4h40v64z' fill='none' stroke='%232C2C2C' stroke-width='6'/%3E%3Crect x='44' y='44' width='64' height='64' fill='none' stroke='%232C2C2C' stroke-width='6'/%3E%3C/svg%3E">
 
-<!--
-  ============================================================
-  DECÔ Arquitetura & Interiores — site de apresentação
-  Feito pela Hella · v1 em 10/08/2026
-  Identidade: clientes/Deco-Arquitetura/identidade.md
-  Briefing:   clientes/Deco-Arquitetura/briefing.md
-  Imagens esperadas: ./assets/  (ver ./assets/README.md)
-  Pendências de conteúdo: ./PENDENTE.md
 
-  Tudo marcado [CONFIRMAR] é suposição da Hella, não informação dos sócios.
-  O site fica de pé SEM NENHUMA FOTO — todo slot cai num placeholder
-  desenhado. Salvar o arquivo em assets/ com o nome certo já basta.
 
-  ⚠️ NENHUMA imagem de IA nesse site. Escritório de arquitetura não pode
-  apresentar render que não é dele. Placeholder até a foto real chegar.
 
-  NÃO PUBLICAR antes de: número do CAU, WhatsApp real e autorização de
-  uso das fotos (sócios + donos dos imóveis).
 
-  A interação pedida pelo cliente ("uma linha onde vai surgindo as coisas
-  do site") é o eixo em SVG do lado esquerdo: ele se desenha conforme a
-  rolagem, faz curva em quarto de círculo (citação do canto do logo) e
-  marca um nó em cada seção — o conteúdo aparece quando a linha chega nele.
-  Código no fim do arquivo, bloco "EIXO".
-  ============================================================
--->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Jost = substituta próxima do wordmark (geométrica, O e C circulares).
-     Se não carregar (offline numa reunião), cai em Century Gothic e depois na
-     pilha do sistema. O site não depende disso pra ficar de pé. -->
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 
 <style>
@@ -530,7 +501,6 @@
 </head>
 <body>
 
-<!-- ===== EIXO: a linha que se desenha conforme a rolagem ===== -->
 <svg id="eixo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
   <path id="eixoTraco" d=""></path>
   <g id="eixoNos"></g>
@@ -557,10 +527,8 @@
 
 <main>
 
-  <!-- ============ HERO ============ -->
   <section class="hero" id="inicio" data-no>
     <div class="wrap">
-      <!-- O símbolo se desenha ao abrir: mesma ideia do eixo, em miniatura. -->
       <svg class="simbolo" viewBox="0 0 112 112" aria-label="Símbolo DECÔ" style="--len:280">
         <path d="M4 68V28A24 24 0 0 1 28 4h40v64z"/>
         <rect x="44" y="44" width="64" height="64" style="--len:256"/>
@@ -584,19 +552,7 @@
     </div>
   </section>
 
-  <!-- ============ VITRINE ============
-       O acervo passando em três faixas na diagonal. Cada faixa traz o mesmo
-       conjunto duas vezes: a animação anda -50% e recomeça na emenda, então
-       o laço é invisível. Direção e velocidade mudam por faixa.
-       Pra trocar as fotos, é só mexer nos `assets/proj-NN.jpg` — a marcação
-       não sabe qual projeto é qual.
 
-       Duas coisas mudaram em 09/10/2026:
-       · `data-i` liga cada cartão à posição da foto no acervo, então clicar
-         num cartão abre a mesma lupa da grade lá embaixo
-       · `aria-hidden` porque essas 12 fotos agora têm uma versão acessível e
-         navegável por teclado na grade do acervo. Sem isso o leitor de tela
-         lia o acervo inteiro duas vezes, e aqui é só atmosfera. -->
   <section class="vitrine" aria-hidden="true">
     <div class="faixas">
 
@@ -634,7 +590,6 @@
     <span class="veu dir" aria-hidden="true"></span>
   </section>
 
-  <!-- ============ 01 SOBRE ============ -->
   <section class="bloco" id="sobre" data-no>
     <div class="wrap">
       <div class="cab rev">
@@ -650,8 +605,6 @@
           </p>
         </div>
         <div class="rev d2">
-          <!-- [CONFIRMAR] Todo esse parágrafo é leitura da Hella sobre o posicionamento
-               do perfil. Precisa da revisão dos sócios antes de publicar. -->
           <p class="apoio">
             Trabalhamos com poucos projetos por vez. É o que permite acompanhar cada
             etapa de perto: o estudo, a escolha do material, o detalhe da marcenaria,
@@ -667,16 +620,12 @@
     </div>
   </section>
 
-  <!-- ============ 02 SERVIÇOS ============ -->
   <section class="bloco escuro" id="servicos" data-no>
     <div class="wrap">
       <div class="cab rev">
         <span class="num meta">02</span>
         <h2>O que fazemos</h2>
       </div>
-      <!-- [CONFIRMAR] Os quatro serviços foram deduzidos da bio ("Architecture •
-           Interiors • Design") e dos destaques do Instagram (Casa J.B, Obra Alma,
-           Quarto Pietro). Confirmar a lista real e o que está incluso em cada um. -->
       <div class="servicos">
         <div class="servico rev d1">
           <span class="num meta">01</span>
@@ -706,7 +655,6 @@
     </div>
   </section>
 
-  <!-- ============ 03 PROJETOS ============ -->
   <section class="bloco" id="projetos" data-no>
     <div class="wrap">
       <div class="cab rev">
@@ -714,8 +662,6 @@
         <h2>Projetos</h2>
       </div>
 
-      <!-- Os nomes são reais (destaques do Instagram). Ano, local e escopo são
-           [CONFIRMAR] — pedir a ficha técnica de cada um aos sócios. -->
       <div class="lista">
       <div class="projeto">
         <div class="slot r43 rev">
@@ -760,28 +706,11 @@
       </div>
 
       <div class="projeto">
-        <!-- Único projeto com mais de uma foto: cinco ângulos do mesmo quarto,
-             trocando sozinhos. A primeira é a única com `visivel` no HTML — se o
-             JS não rodar, ela fica fixa e a seção continua de pé.
-             As imagens são 9:16 (frames do Reels), por isso o slot é 3:4: corta
-             pouco e não clipa o topo de nenhuma delas. -->
         <div class="slot r34 galeria rev" data-galeria>
-          <!-- ⚠️ A `quarto-pietro-1.jpg` (vista geral) saiu da rotação em 09/10/2026,
-               na hora de publicar. Motivo: o porta-retrato no criado-mudo mostra o
-               rosto do bebê, e o site agora é público e indexável pelo Google — o que
-               é diferente de um post no Instagram. Os pais não confirmaram autorização.
-               O arquivo continua em assets/, intacto.
-               PRA VOLTAR, quando a autorização chegar: troque a linha de baixo por
-                 <img class="visivel" src="assets/quarto-pietro-1.jpg" alt="Quarto Pietro — vista do berço, poltrona de amamentação e luminária" onerror="this.dataset.falhou=1">
-               e devolva o alt vazio para a quarto-pietro-2. -->
           <img class="visivel" src="assets/quarto-pietro-2.jpg" alt="Quarto Pietro — berço, móbile e almofada bordada" onerror="this.dataset.falhou=1">
           <img src="assets/quarto-pietro-3.jpg" alt="" aria-hidden="true" loading="lazy">
           <img src="assets/quarto-pietro-4.jpg" alt="" aria-hidden="true" loading="lazy">
           <img src="assets/quarto-pietro-5.jpg" alt="" aria-hidden="true" loading="lazy">
-          <!-- A sexta entrou em 09/10/2026. Ela estava fora porque é 9:16 e o
-               topo da cúpula fica a 8% da altura: no corte centralizado do slot
-               3:4 a luminária era decepada. `.topo` ancora o enquadramento no
-               alto — o corte sai no rodapé da cama, onde não faz falta. -->
           <img class="topo" src="assets/quarto-pietro-6.jpg" alt="" aria-hidden="true" loading="lazy">
           <span class="cortina" aria-hidden="true"></span>
           <div class="aviso" aria-hidden="true">
@@ -792,8 +721,6 @@
         <div class="ficha rev d1">
           <span class="meta">Interiores</span>
           <h3>Quarto Pietro</h3>
-          <!-- Texto reescrito em 10/08/2026 a partir das fotos reais: é quarto de
-               bebê, e não tem marcenaria sob medida à vista. -->
           <p class="apoio">Quarto de bebê resolvido inteiro — papel de parede, prateleiras,
              iluminação e enxoval na mesma paleta de verde-sálvia, azul e cru. Cada peça
              foi escolhida pra compor com o desenho da parede, não pra preencher espaço.</p>
@@ -806,14 +733,6 @@
       </div>
       </div>
 
-      <!-- ============ ACERVO ============
-           A vitrine lá em cima passa; aqui o visitante para e olha. São as
-           mesmas 12 imagens do acervo, agora em grade, clicáveis e em alta.
-           Sem nome de projeto: o que cada uma é já está dito na legenda, e
-           atribuir imagem a "Casa J.B" ou "Obra Alma" sem os sócios
-           confirmarem seria inventar ficha técnica.
-           Cada peça é um link pro arquivo em alta — sem JS a foto abre na
-           aba; com JS ela abre na lupa, por cima da página. -->
       <hr class="regra rev" style="margin:clamp(40px,7vh,78px) 0 0">
       <div class="cab-acervo rev">
         <span class="meta">Acervo</span>
@@ -879,15 +798,12 @@
     </div>
   </section>
 
-  <!-- ============ 04 PROCESSO ============ -->
   <section class="bloco" id="processo" data-no style="background:var(--card)">
     <div class="wrap">
       <div class="cab rev">
         <span class="num meta">04</span>
         <h2>Como trabalhamos</h2>
       </div>
-      <!-- [CONFIRMAR] As quatro etapas são o fluxo padrão de escritório de arquitetura.
-           Confirmar com os sócios o processo real e o que entra em cada fase. -->
       <div class="etapas">
         <div class="etapa rev d1">
           <span class="num meta">01</span>
@@ -913,7 +829,6 @@
     </div>
   </section>
 
-  <!-- ============ 05 ESCRITÓRIO ============ -->
   <section class="bloco escuro" id="escritorio" data-no>
     <div class="wrap">
       <div class="cab rev">
@@ -952,7 +867,6 @@
     </div>
   </section>
 
-  <!-- ============ 06 CONTATO ============ -->
   <section class="bloco contato" id="contato" data-no>
     <div class="wrap">
       <div class="cab rev">
@@ -964,8 +878,6 @@
         que faz sentido e o prazo do estudo.
       </p>
       <div class="canais rev d2">
-        <!-- ⚠️ wa.me/55XXXXXXXXXXX é placeholder inválido de propósito, pra ninguém
-             discar por engano. Trocar nos 3 lugares antes de publicar. -->
         <a class="btn" href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener">
           WhatsApp <span class="seta" aria-hidden="true">→</span>
         </a>
@@ -991,7 +903,6 @@
         <div>
           <span class="meta">E-mail</span>
           <p><a href="mailto:contato@deco-arquitetura.com.br">contato@deco-arquitetura.com.br</a></p>
-          <!-- [CONFIRMAR] visita ao escritório é só com hora marcada? -->
         </div>
       </div>
     </div>
@@ -1040,11 +951,6 @@
   </div>
 </footer>
 
-<!-- ===== LUPA: o acervo em tela cheia =====
-     Fica fora do <main> de propósito: <dialog> modal sobe pra camada de topo
-     do navegador, então a posição na marcação não importa — e aqui ele não
-     entra na conta de altura do eixo.
-     A foto em alta só é baixada quando alguém abre. -->
 <dialog id="lupa" class="lupa" aria-label="Acervo da DECÔ em tela cheia">
   <div class="palco" data-fechar>
     <figure data-fechar>
@@ -1403,10 +1309,6 @@
   });
 })();
 </script>
-<!--
-  Dados estruturados pra busca local. Só entra aqui o que está confirmado —
-  telefone e horário ficam de fora até os sócios passarem.
--->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

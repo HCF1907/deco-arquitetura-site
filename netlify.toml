@@ -1,19 +1,20 @@
-# Site da DECÔ Arquitetura & Interiores — estático, sem build.
-# Os arquivos ficam na raiz do repositório pra funcionar igual no Netlify e
-# no GitHub Pages, sem duplicar nada.
+# Publicação do site da DECÔ no Netlify.
+# Site estático, sem build. O publicar.sh monta a pasta pronta: os arquivos
+# ficam na raiz do destino pra servir igual no Netlify e no GitHub Pages.
+#
+# O site foi publicado em 09/10/2026 por decisão do Felipe, ciente de que
+# CAU, WhatsApp e as autorizações de foto ainda estavam pendentes.
+# Ver site/PENDENTE.md.
 
 [build]
   publish = "."
   command = ""
 
-# Config e documentação não são conteúdo do site.
+# A documentação interna tem nota de privacidade, suposição não confirmada e
+# observação sobre o cliente. Ela não vai pro repositório de deploy, mas a
+# regra fica como rede de segurança caso algum .md escorregue pra dentro.
 [[redirects]]
   from = "/*.md"
-  to = "/index.html"
-  status = 404
-
-[[redirects]]
-  from = "/netlify.toml"
   to = "/index.html"
   status = 404
 
@@ -23,13 +24,14 @@
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
-# O HTML revalida sempre: nessa fase o texto ainda muda, e correção precisa
-# aparecer na hora pra quem já visitou.
+# O HTML precisa revalidar sempre, senão uma correção de texto demora a
+# aparecer pra quem já visitou — e nessa fase o texto ainda vai mudar muito.
 [[headers]]
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
+# Cabeçalhos de segurança básicos, no padrão dos outros sites da casa.
 [[headers]]
   for = "/*"
   [headers.values]
